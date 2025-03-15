@@ -7,7 +7,8 @@ find_package(raylib CONFIG REQUIRED)
 add_executable(cpp-rlib-breakout 
     src/main.cpp 
     src/paddle.cpp
+    src/ball.cpp
+    src/game.cpp
 )
-
 
 target_link_libraries(cpp-rlib-breakout PRIVATE raylib)
