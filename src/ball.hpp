@@ -10,8 +10,9 @@ class Ball
     void Update();
     void MoveDirection(float x, float y);
     Vector2 GetPosition() { return position; }
-    int GetRadius() { return r; }
+    int GetRadius() { return r + 0.01; }
     Vector2 GetDirection() { return direction; }
+    void Reset();
 
   private:
     Vector2 position;

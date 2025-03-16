@@ -1,41 +1,47 @@
 #include "game.hpp"
+#include <iostream>
 #include <raylib.h>
 const Color DARK_BLUE = {0, 0, 128, 255};
 
 int main(int, char **)
 {
+    InitWindow(450, 650, "Breakout");
     SetTargetFPS(60);
-    InitWindow(680, 450, "Breakout");
-
-    /* int px = GetScreenWidth() / 2;
-    int py = GetScreenHeight() - 15 - 30;
-    int pw = 140;
-    int ph = 12;
-    float pspeed = 4;
-    Color pcolor = {255, 174, 0, 255};
-    Paddle paddle = Paddle(px, py, pw, ph, pspeed, pcolor);
-
-    int bx = GetScreenWidth() / 2;
-    int by = GetScreenHeight() / 2 - 50;
-    int br = 10;
-    float bspeed = 1.5;
-    Color bcolor = {128, 128, 128, 255};
-    Ball ball = Ball({(float)bx, (float)by}, {1, -0.5}, br, bspeed, bcolor); */
-
+    Font font = LoadFontEx("assets/fonts/arcadeclassic.regular.ttf", 64, 0, 250);
+    if (font.texture.id == 0) // If font failed to load
+    {
+        std::cout << "Failed to load font!" << std::endl;
+    }
+    else
+    {
+        std::cout << "Font loaded successfully!" << std::endl;
+    }
     Game game = Game();
 
     while (WindowShouldClose() == false)
     {
-        // paddle.Update();
-        // ball.Update();
         game.Update();
+
         BeginDrawing();
-        ClearBackground(DARK_BLUE);
-        // paddle.Draw();
-        // ball.Draw();
+        ClearBackground(BLACK);
         game.Draw();
+
+        std::string uiText;
+        Vector2 uiPosition;
+        uiText = TextFormat("SCORE: %03d", game.GetScore());
+        uiPosition.x = 10;
+        uiPosition.y = 10;
+        if (!uiText.empty())
+        {
+            float textWidth = MeasureTextEx(font, uiText.c_str(), 40, 2).x;
+            uiPosition.x = (float)(GetScreenWidth() / 2.0f - textWidth / 2);
+            DrawTextEx(font, uiText.c_str(), uiPosition, 40, 2, WHITE);
+        }
+
         EndDrawing();
     }
+
+    UnloadFont(font);
 
     return 0;
 }

@@ -26,3 +26,9 @@ void Ball::MoveDirection(float x, float y)
     direction.x = x;
     direction.y = y;
 }
+
+void Ball::Reset()
+{
+    position = {GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f};
+    direction = {1, -0.5};
+}

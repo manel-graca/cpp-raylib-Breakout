@@ -1,13 +1,7 @@
 #include "paddle.hpp"
+
 Paddle::Paddle(float x, float y, float width, float height, float speed, Color color)
-{
-    this->x = x;
-    this->y = y;
-    this->w = width;
-    this->h = height;
-    this->speed = speed;
-    this->color = color;
-}
+    : x(x), y(y), w(width), h(height), speed(speed), color(color) { }
 
 void Paddle::Draw()
 {
@@ -36,4 +30,10 @@ void Paddle::Move(bool left)
     {
         x += speed;
     }
+}
+
+void Paddle::Reset()
+{
+    x = GetScreenWidth() / 2.0f - w / 2;
+    y = GetScreenHeight() - 15 - 30;
 }

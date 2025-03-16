@@ -9,6 +9,7 @@ add_executable(cpp-rlib-breakout
     src/paddle.cpp
     src/ball.cpp
     src/game.cpp
+    src/block.cpp
 )
 
 target_link_libraries(cpp-rlib-breakout PRIVATE raylib)

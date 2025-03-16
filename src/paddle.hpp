@@ -8,6 +8,7 @@ class Paddle
     void Update();
     void Move(bool left);
     Rectangle GetRec() { return {x, y, w, h}; }
+    void Reset();
 
   private:
     float x, y, w, h, speed;
